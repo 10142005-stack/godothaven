@@ -17,6 +17,7 @@ height = 46.0
 [sub_resource type="SpriteFrames" id="SpriteFrames_gww6i"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qswpt"]
+radius = 3.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_unpas"]
 size = Vector2(20, 14)
@@ -51,16 +52,18 @@ position = Vector2(1155, 0)
 position = Vector2(-4.5, 352.5)
 shape = SubResource("RectangleShape2D_qswpt")
 
-[node name="Player" type="CharacterBody2D" parent="." unique_id=1387210572]
+[node name="Player" type="CharacterBody2D" parent="." unique_id=1387210572 groups=["player"]]
 position = Vector2(4860, -1192)
 script = ExtResource("1_e2o6t")
 
-[node name="PlayerTexture" type="Sprite2D" parent="Player" unique_id=1902238351]
+[node name="PlayerTexture" type="Sprite2D" parent="Player" unique_id=1902238351 groups=["player"]]
 position = Vector2(-4202, 1487)
 scale = Vector2(0.2, 0.20312464)
 texture = ExtResource("2_feb5d")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=1316087253]
+[node name="PickupRange" type="Area2D" parent="Player" unique_id=1037439283 groups=["player"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/PickupRange" unique_id=1316087253 groups=["player"]]
 position = Vector2(-4202, 1487)
 shape = SubResource("CapsuleShape2D_gww6i")
 
@@ -71,15 +74,19 @@ position = Vector2(37, 13)
 sprite_frames = SubResource("SpriteFrames_gww6i")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SlimeEnemy" unique_id=716452260]
-position = Vector2(91, 60)
+position = Vector2(37, 13)
 shape = SubResource("CircleShape2D_qswpt")
 
-[node name="Weapon" type="Area2D" parent="." unique_id=1906386646]
+[node name="Weapon" type="Area2D" parent="." unique_id=1906386646 groups=["weapon"]]
 position = Vector2(673, 296)
 
-[node name="WeaponModel" type="Sprite2D" parent="Weapon" unique_id=34821468]
+[node name="Area2D" type="Area2D" parent="Weapon" unique_id=1032084660]
+
+[node name="WeaponModel" type="Sprite2D" parent="Weapon/Area2D" unique_id=34821468 groups=["weapon"]]
 texture = ExtResource("3_feb5d")
 
-[node name="WeapHitbox" type="CollisionShape2D" parent="Weapon" unique_id=52139642]
-position = Vector2(3, -3)
+[node name="WeapHitbox" type="CollisionShape2D" parent="Weapon/Area2D" unique_id=52139642 groups=["weapon"]]
+position = Vector2(0, -4)
 shape = SubResource("RectangleShape2D_unpas")
+
+[connection signal="area_entered" from="Weapon" to="Player" method="_on_weapon_area_entered"]
