@@ -62,31 +62,31 @@ animations = [{
 
 [node name="Game" type="Node2D" unique_id=1371066022]
 
-[node name="border_x" type="StaticBody2D" parent="." unique_id=824791603]
+[node name="border_x_up" type="StaticBody2D" parent="." unique_id=824791603]
 position = Vector2(1, 1)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="border_x" unique_id=153392690]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="border_x_up" unique_id=153392690]
 position = Vector2(587, -5)
 shape = SubResource("RectangleShape2D_gww6i")
 
-[node name="border_x2" type="StaticBody2D" parent="." unique_id=550781574]
+[node name="border_x_down" type="StaticBody2D" parent="." unique_id=550781574]
 position = Vector2(1, 1)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="border_x2" unique_id=2014094775]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="border_x_down" unique_id=2014094775]
 position = Vector2(591, 655)
 shape = SubResource("RectangleShape2D_gww6i")
 
-[node name="border_y" type="StaticBody2D" parent="." unique_id=111284373]
+[node name="border_y_left" type="StaticBody2D" parent="." unique_id=111284373]
 position = Vector2(0, 1)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="border_y" unique_id=1581580962]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="border_y_left" unique_id=1581580962]
 position = Vector2(-4.5, 352.5)
 shape = SubResource("RectangleShape2D_qswpt")
 
-[node name="border_y2" type="StaticBody2D" parent="." unique_id=1869174179]
+[node name="border_y2_right" type="StaticBody2D" parent="." unique_id=1869174179]
 position = Vector2(1155, 0)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="border_y2" unique_id=2069179889]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="border_y2_right" unique_id=2069179889]
 position = Vector2(-4.5, 352.5)
 shape = SubResource("RectangleShape2D_qswpt")
 
