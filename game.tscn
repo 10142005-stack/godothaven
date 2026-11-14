@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bm6c3xbvobacd" path="res://icon.svg" id="2_feb5d"]
 [ext_resource type="Script" uid="uid://c24gfuwdosre6" path="res://slime_enemy.gd" id="3_fc0e3"]
 [ext_resource type="Texture2D" uid="uid://dnukprwuvv7sa" path="res://dfd19fd-b2b03c22-4d0e-47a3-ba82-341fdd386db6 (1).png" id="3_feb5d"]
+[ext_resource type="Texture2D" uid="uid://cmp4p8hhlyfwv" path="res://images.png" id="5_7jktm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gww6i"]
 size = Vector2(1194, 10)
@@ -61,6 +62,13 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_qswpt"]
 
 [node name="Game" type="Node2D" unique_id=1371066022]
+
+[node name="Background" type="Sprite2D" parent="." unique_id=2094429427]
+
+[node name="Sprite2D" type="Sprite2D" parent="Background" unique_id=1148554614]
+position = Vector2(576.25, 329)
+scale = Vector2(3.590909, 2.7)
+texture = ExtResource("5_7jktm")
 
 [node name="border_x_up" type="StaticBody2D" parent="." unique_id=824791603]
 position = Vector2(1, 1)
