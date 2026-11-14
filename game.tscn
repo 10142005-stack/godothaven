@@ -1,92 +1,178 @@
-[gd_scene format=3 uid="uid://dtftuoyy3b16"]
+[gd_scene load_steps=12 format=3 uid="uid://dtftuoyy3b16"]
 
-[ext_resource type="Script" uid="uid://cic334dlp7q4o" path="res://player.gd" id="1_e2o6t"]
-[ext_resource type="Texture2D" uid="uid://bm6c3xbvobacd" path="res://icon.svg" id="2_feb5d"]
-[ext_resource type="Texture2D" uid="uid://g2egvq0t8w51" path="res://Sprites/dfd19fd-b2b03c22-4d0e-47a3-ba82-341fdd386db6 (6).png" id="3_feb5d"]
+[ext_resource type="Script" uid="uid://cic334dlp7q4o" path="res://player.gd" id="1_player"]
+[ext_resource type="Texture2D" uid="uid://bm6c3xbvobacd" path="res://icon.svg" id="2_icon"]
+[ext_resource type="Texture2D" uid="uid://g2egvq0t8w51" path="res://Sprites/dfd19fd-b2b03c22-4d0e-47a3-ba82-341fdd386db6 (6).png" id="3_weapon"]
+[ext_resource type="Script" path="res://spawner.gd" id="4_spawner"]
+[ext_resource type="Script" path="res://hud.gd" id="5_hud"]
+[ext_resource type="Texture2D" uid="uid://u5ob2exxyppd" path="res://Sprites/dfd19fd-b2b03c22-4d0e-47a3-ba82-341fdd386db6 (8).png" id="6_bullet"]
+[ext_resource type="Texture2D" uid="uid://cmp4p8hhlyfwv" path="res://images.png" id="7_bg"]
+[ext_resource type="Script" path="res://crosshair.gd" id="8_crosshair"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_gww6i"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hwall"]
 size = Vector2(1194, 10)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_qswpt"]
-size = Vector2(7, 707)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vwall"]
+size = Vector2(10, 707)
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gww6i"]
-radius = 14.300293
-height = 46.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_player"]
+radius = 14.0
+height = 38.0
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_gww6i"]
+[node name="Game" type="Node2D"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_qswpt"]
-radius = 3.0
+[node name="Background" type="CanvasLayer" parent="."]
+layer = -100
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_unpas"]
-size = Vector2(20, 14)
+[node name="TextureRect" type="TextureRect" parent="Background"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("7_bg")
+expand_mode = 1
+stretch_mode = 6
 
-[node name="Game" type="Node2D" unique_id=1371066022]
+[node name="border_top" type="StaticBody2D" parent="."]
+position = Vector2(576, 0)
 
-[node name="border_x" type="StaticBody2D" parent="." unique_id=824791603]
-position = Vector2(1, 1)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="border_top"]
+shape = SubResource("RectangleShape2D_hwall")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="border_x" unique_id=153392690]
-position = Vector2(587, -5)
-shape = SubResource("RectangleShape2D_gww6i")
+[node name="border_bottom" type="StaticBody2D" parent="."]
+position = Vector2(576, 652)
 
-[node name="border_x2" type="StaticBody2D" parent="." unique_id=550781574]
-position = Vector2(1, 1)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="border_bottom"]
+shape = SubResource("RectangleShape2D_hwall")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="border_x2" unique_id=2014094775]
-position = Vector2(591, 655)
-shape = SubResource("RectangleShape2D_gww6i")
+[node name="border_left" type="StaticBody2D" parent="."]
+position = Vector2(0, 326)
 
-[node name="border_y" type="StaticBody2D" parent="." unique_id=111284373]
-position = Vector2(0, 1)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="border_left"]
+shape = SubResource("RectangleShape2D_vwall")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="border_y" unique_id=1581580962]
-position = Vector2(-4.5, 352.5)
-shape = SubResource("RectangleShape2D_qswpt")
+[node name="border_right" type="StaticBody2D" parent="."]
+position = Vector2(1152, 326)
 
-[node name="border_y2" type="StaticBody2D" parent="." unique_id=1869174179]
-position = Vector2(1155, 0)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="border_right"]
+shape = SubResource("RectangleShape2D_vwall")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="border_y2" unique_id=2069179889]
-position = Vector2(-4.5, 352.5)
-shape = SubResource("RectangleShape2D_qswpt")
+[node name="Enemies" type="Node2D" parent="." groups=["enemies_container"]]
 
-[node name="Player" type="CharacterBody2D" parent="." unique_id=1387210572 groups=["player"]]
-position = Vector2(4860, -1192)
-script = ExtResource("1_e2o6t")
+[node name="Projectiles" type="Node2D" parent="." groups=["projectiles"]]
 
-[node name="PlayerTexture" type="Sprite2D" parent="Player" unique_id=1902238351 groups=["player"]]
-position = Vector2(-4202, 1487)
-scale = Vector2(0.2, 0.20312464)
-texture = ExtResource("2_feb5d")
+[node name="Player" type="CharacterBody2D" parent="." groups=["player"]]
+position = Vector2(576, 326)
+collision_layer = 2
+collision_mask = 1
+script = ExtResource("1_player")
 
-[node name="PickupRange" type="Area2D" parent="Player" unique_id=1037439283 groups=["player"]]
+[node name="PlayerTexture" type="Sprite2D" parent="Player"]
+scale = Vector2(0.45, 0.45)
+texture = ExtResource("2_icon")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/PickupRange" unique_id=1316087253 groups=["player"]]
-position = Vector2(-4202, 1487)
-shape = SubResource("CapsuleShape2D_gww6i")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource("CapsuleShape2D_player")
 
-[node name="SlimeEnemy" type="CharacterBody2D" parent="." unique_id=2001821378]
+[node name="Weapon" type="Node2D" parent="Player"]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SlimeEnemy" unique_id=1212112636]
-position = Vector2(37, 13)
-sprite_frames = SubResource("SpriteFrames_gww6i")
+[node name="WeaponModel" type="Sprite2D" parent="Player/Weapon"]
+position = Vector2(26, 0)
+scale = Vector2(3.5, 3.5)
+texture = ExtResource("3_weapon")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SlimeEnemy" unique_id=716452260]
-position = Vector2(37, 13)
-shape = SubResource("CircleShape2D_qswpt")
+[node name="MuzzleFlash" type="Sprite2D" parent="Player/Weapon"]
+visible = false
+z_index = 1
+position = Vector2(66, 0)
+scale = Vector2(9, 9)
+modulate = Color(1, 0.9, 0.5, 1)
+texture = ExtResource("6_bullet")
+region_enabled = true
+region_rect = Rect2(15, 13, 2, 1)
 
-[node name="Weapon" type="Area2D" parent="." unique_id=1906386646 groups=["weapon"]]
-position = Vector2(673, 296)
+[node name="Spawner" type="Node2D" parent="."]
+script = ExtResource("4_spawner")
 
-[node name="Area2D" type="Area2D" parent="Weapon" unique_id=1032084660]
+[node name="HUD" type="CanvasLayer" parent="."]
+script = ExtResource("5_hud")
 
-[node name="WeaponModel" type="Sprite2D" parent="Weapon/Area2D" unique_id=34821468 groups=["weapon"]]
-texture = ExtResource("3_feb5d")
+[node name="Root" type="Control" parent="HUD"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
-[node name="WeapHitbox" type="CollisionShape2D" parent="Weapon/Area2D" unique_id=52139642 groups=["weapon"]]
-position = Vector2(0, -4)
-shape = SubResource("RectangleShape2D_unpas")
+[node name="Panel" type="ColorRect" parent="HUD/Root"]
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 440.0
+offset_bottom = 116.0
+mouse_filter = 2
+color = Color(0, 0, 0, 0.45)
 
-[connection signal="area_entered" from="Weapon" to="Player" method="_on_weapon_area_entered"]
+[node name="LevelLabel" type="Label" parent="HUD/Root"]
+offset_left = 20.0
+offset_top = 16.0
+offset_right = 340.0
+offset_bottom = 44.0
+text = "Lv 1    Kills 0"
+
+[node name="HealthBar" type="ProgressBar" parent="HUD/Root"]
+offset_left = 20.0
+offset_top = 50.0
+offset_right = 320.0
+offset_bottom = 74.0
+max_value = 100.0
+value = 100.0
+show_percentage = false
+
+[node name="HealthLabel" type="Label" parent="HUD/Root/HealthBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+text = "HP 100 / 100"
+
+[node name="XPBar" type="ProgressBar" parent="HUD/Root"]
+offset_left = 20.0
+offset_top = 82.0
+offset_right = 420.0
+offset_bottom = 108.0
+max_value = 5.0
+show_percentage = false
+
+[node name="Label" type="Label" parent="HUD/Root/XPBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+text = "XP 0 / 5"
+
+[node name="GameOver" type="Label" parent="HUD/Root"]
+visible = false
+offset_left = 316.0
+offset_top = 294.0
+offset_right = 836.0
+offset_bottom = 354.0
+text = "GAME OVER\nPress Enter to restart"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Crosshair" type="Node2D" parent="."]
+z_index = 10
+script = ExtResource("8_crosshair")
