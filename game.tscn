@@ -111,7 +111,7 @@ position = Vector2(177, 115)
 scale = Vector2(2.9375, 2.6875)
 sprite_frames = SubResource("SpriteFrames_gww6i")
 animation = &"Jumping"
-frame_progress = 0.009942418
+frame_progress = 0.48160085
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SlimeEnemy" unique_id=716452260]
 position = Vector2(91, 60)
