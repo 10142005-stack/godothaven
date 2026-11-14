@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bm6c3xbvobacd" path="res://icon.svg" id="2_feb5d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gww6i"]
-size = Vector2(282, 20)
+size = Vector2(1194, 10)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qswpt"]
 size = Vector2(7, 707)
@@ -19,7 +19,14 @@ height = 46.0
 position = Vector2(1, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="border_x" unique_id=153392690]
-position = Vector2(131, 0)
+position = Vector2(587, -5)
+shape = SubResource("RectangleShape2D_gww6i")
+
+[node name="border_x2" type="StaticBody2D" parent="." unique_id=550781574]
+position = Vector2(1, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="border_x2" unique_id=2014094775]
+position = Vector2(591, 655)
 shape = SubResource("RectangleShape2D_gww6i")
 
 [node name="border_y" type="StaticBody2D" parent="." unique_id=111284373]
