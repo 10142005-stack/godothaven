@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://dy07tl4l0yqjm"]
+
+[ext_resource type="Script" uid="uid://ext0qwt51pby" path="res://control.gd" id="1_ocuqq"]
+
+[node name="XPBar" type="Node2D" unique_id=604403566]
+
+[node name="Control" type="Control" parent="." unique_id=39573337]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_ocuqq")
+
+[node name="Label" type="Label" parent="Control" unique_id=1926174188]
+layout_mode = 0
+offset_top = -3.0
+offset_right = 72.0
+offset_bottom = 23.0
+text = "XP: 0/100"
