@@ -10,8 +10,12 @@ size = Vector2(1194, 10)
 size = Vector2(7, 707)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gww6i"]
-radius = 15.0
+radius = 14.300293
 height = 46.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gww6i"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qswpt"]
 
 [node name="Game" type="Node2D" unique_id=1371066022]
 
@@ -44,14 +48,24 @@ position = Vector2(-4.5, 352.5)
 shape = SubResource("RectangleShape2D_qswpt")
 
 [node name="Player" type="CharacterBody2D" parent="." unique_id=1387210572]
-position = Vector2(1126, -1467)
+position = Vector2(4860, -1192)
 script = ExtResource("1_e2o6t")
 
 [node name="PlayerTexture" type="Sprite2D" parent="Player" unique_id=1902238351]
-position = Vector2(546.99994, 168.99998)
-scale = Vector2(0.2, 0.2)
+position = Vector2(-4202, 1487)
+scale = Vector2(0.2, 0.20312464)
 texture = ExtResource("2_feb5d")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=1316087253]
-position = Vector2(547, 169)
+position = Vector2(-4202, 1487)
 shape = SubResource("CapsuleShape2D_gww6i")
+
+[node name="SlimeEnemy" type="CharacterBody2D" parent="." unique_id=2001821378]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SlimeEnemy" unique_id=1212112636]
+position = Vector2(37, 13)
+sprite_frames = SubResource("SpriteFrames_gww6i")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SlimeEnemy" unique_id=716452260]
+position = Vector2(91, 60)
+shape = SubResource("CircleShape2D_qswpt")
